@@ -1,0 +1,23 @@
+<!--pages/member/member.wxml-->
+<view class="member-container">
+  <view class="header-info">
+    <!--背景图片  -->
+    <image class="bg-wrapper" src='../../images/member_bg.png'></image>
+    <!--如果只是展示头像、昵称，可以使用<open-data/>组件  -->      
+    <open-data class="avatar" type="userAvatarUrl"></open-data>
+    <open-data class="nickname" type="userNickName"></open-data> 
+    <!--格言  -->
+    <view class="motto">惠灵顿-在线校服预售~</view>
+  </view>
+
+  <!--我的订单  -->
+  <view class="my-order">
+    <view class="left">
+      <image class="icon-order" src="../../images/order.png"></image>
+      <text>我的订单</text>
+    </view>
+    <image bindtap="goMain" class="icon-arrow" src="../../images/right_arrow.png"></image>
+  </view>
+  
+  
+</view>

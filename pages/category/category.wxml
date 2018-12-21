@@ -1,0 +1,124 @@
+<!--index.wxml-->
+<view class="navigation">
+  <text class="nav-title">选择商品</text>
+</view>
+<view class="container">
+  <view class="guess-you-like-list">
+    <view class="guess-goods-item">
+      <text class="guess-title">选择上装</text>
+    </view>
+  </view>
+  <view style='border-radius: 19rpx;border: 2rpx solid #f8f8f8;'>
+    <view class="bargain-wrapper">
+      <view class="bargain-item">
+        <image class="bargain-img" src="../../images/c_1.png"></image>
+        <view class="bargain-info">
+          <view class="info-header">
+            <text class="title" space="nbsp">男生长袖羊毛衬衫</text>
+            <text class="desc">单价<text style='color:red;padding-left:20rpx;'>￥130</text></text>
+          </view>
+        </view>
+      </view>
+      <view class="guess-you-like-list">
+        <view class="guess-goods-item">
+          <text class="guess-title" style='padding-left:20rpx;'>尺码</text>
+        </view>
+        <view class="guess-goods-item">
+          <picker bindchange="bindAccountChange" value="{{accountIndex}}" range="{{accounts}}">
+            <view class="weui-select">{{accounts[accountIndex]}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="guess-you-like-list">
+        <view class="guess-goods-item">
+          <text class="guess-title" style='padding-left:20rpx;'>数量</text>
+        </view>
+        <view class="guess-goods-item">
+          <view class='stepper'>
+            <text class='{{minusStatus}}' type='number' bindtap='bindMinus'>-</text>
+            <input bindinput='bindManual' value='{{num}}'></input>
+            <text bindtap='bindPlus'>+</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="guess-you-like-list">
+    <view class="guess-goods-item">
+      <text class="guess-title">选择下装</text>
+    </view>
+  </view>
+  <view style='border-radius: 19rpx;border: 2rpx solid #f8f8f8;'>
+    <view class="bargain-wrapper">
+      <view class="bargain-item">
+        <image class="bargain-img" src="../../images/c_2.png"></image>
+        <view class="bargain-info">
+          <view class="info-header">
+            <text class="title" space="nbsp">西短裤</text>
+            <text class="desc">单价<text style='color:red;padding-left:20rpx;'>￥130</text></text>
+          </view>
+        </view>
+      </view>
+      <view class="guess-you-like-list">
+        <view class="guess-goods-item">
+          <text class="guess-title" style='padding-left:20rpx;'>尺码</text>
+        </view>
+        <view class="guess-goods-item">
+          <picker bindchange="bindAccountChange" value="{{accountIndex}}" range="{{accounts}}">
+            <view class="weui-select">{{accounts[accountIndex]}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="guess-you-like-list">
+        <view class="guess-goods-item">
+          <text class="guess-title" style='padding-left:20rpx;'>数量</text>
+        </view>
+        <view class="guess-goods-item">
+          <view class='stepper'>
+            <text class='{{minusStatus}}' type='number' bindtap='bindMinus'>-</text>
+            <input bindinput='bindManual' value='{{num}}'></input>
+            <text bindtap='bindPlus'>+</text>
+          </view>
+        </view>
+
+      </view>
+
+    </view>
+    <view class="bargain-wrapper">
+      <view class="bargain-item">
+        <image class="bargain-img" src="../../images/c_3.png"></image>
+        <view class="bargain-info">
+          <view class="info-header">
+            <text class="title" space="nbsp">PE运动裤</text>
+            <text class="desc">单价<text style='color:red;padding-left:20rpx;'>￥130</text></text>
+          </view>
+        </view>
+      </view>
+      <view class="guess-you-like-list">
+        <view class="guess-goods-item">
+          <text class="guess-title" style='padding-left:20rpx;'>尺码</text>
+        </view>
+        <view class="guess-goods-item">
+          <picker bindchange="bindAccountChange" value="{{accountIndex}}" range="{{accounts}}">
+            <view class="weui-select">{{accounts[accountIndex]}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="guess-you-like-list">
+        <view class="guess-goods-item">
+          <text class="guess-title" style='padding-left:20rpx;'>数量</text>
+        </view>
+        <view class="guess-goods-item">
+          <view class='stepper'>
+            <text class='{{minusStatus}}' type='number' bindtap='bindMinus'>-</text>
+            <input bindinput='bindManual' value='{{num}}'></input>
+            <text bindtap='bindPlus'>+</text>
+          </view>
+        </view>
+
+      </view>
+    </view>
+  </view>
+  <button class="btn-add" style='margin-botom:180rpx;margin-top:60rpx;'>提交订单</button>
+  <view style='height:30px;' ></view>
+</view>

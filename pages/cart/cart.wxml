@@ -1,0 +1,75 @@
+<!--index.wxml-->
+<view class="navigation">
+  <text class="nav-title">信息录入</text>
+</view>
+<view class="container">
+  <view class="guess-you-like-list">
+    <view class="guess-goods-item">
+      <text class="guess-title" style="margin-left:28rpx;text-align:left;">填写学生基本信息</text>
+    </view>
+  </view>
+  <view class="bargain-wrapper">
+    <view class="guess-you-like-list">
+      <view class="guess-goods-item" style='width:30%;'>
+        <text class="guess-title" style="margin-left:28rpx;text-align:left;color:black;">姓名</text>
+      </view>
+      <view class="guess-goods-item" style='width:70%;'>
+        <input placeholder='输入学生姓名' style='height:100%;width:100%;'></input>
+      </view>
+    </view>
+    <view class="guess-you-like-list">
+      <view class="guess-goods-item" style='width:30%;'>
+        <text class="guess-title" style="margin-left:28rpx;text-align:left;color:black;">班级</text>
+      </view>
+      <view class="guess-goods-item" style='width:70%;'>
+        <input placeholder='输入班级' style='height:100%;width:100%;'></input>
+      </view>
+    </view>
+  </view>
+  <view class="bargain-wrapper" style='margin-top:30rpx;'>
+
+    <view class="guess-you-like-list">
+      <view class="guess-goods-item" style='width:30%;'>
+        <text class="guess-title" style="margin-left:28rpx;text-align:left;color:black;">性别</text>
+      </view>
+      <view class="guess-goods-item" style='width:70%;'>
+        <view class="page__bd">
+          <view class="section section_gap">
+            <radio-group class="radio-group" bindchange="radioChange">
+              <radio class="radio" wx:for-items="{{items}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+                <text>{{item.value}}</text>
+              </radio>
+            </radio-group>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="guess-you-like-list">
+      <view class="guess-goods-item" style='width:30%;'>
+        <text class="guess-title" style="margin-left:28rpx;text-align:left;color:black;">年龄</text>
+      </view>
+      <view class="guess-goods-item" style='width:70%;'>
+        <input placeholder='输入年龄' style='height:100%;width:100%;'></input>
+      </view>
+    </view>
+    <view class="guess-you-like-list">
+      <view class="guess-goods-item" style='width:30%;'>
+        <text class="guess-title" style="margin-left:28rpx;text-align:left;color:black;">身高</text>
+      </view>
+      <view class="guess-goods-item" style='width:70%;'>
+        <input placeholder='输入身高(cm)' style='height:100%;width:100%;'></input>
+      </view>
+    </view>
+    <view class="guess-you-like-list">
+      <view class="guess-goods-item" style='width:30%;'>
+        <text class="guess-title" style="margin-left:28rpx;text-align:left;color:black;">体重</text>
+      </view>
+      <view class="guess-goods-item" style='width:70%;'>
+        <input placeholder='输入体重(kg)' style='height:100%;width:100%;'></input>
+      </view>
+    </view>
+
+  </view>
+
+
+</view>
