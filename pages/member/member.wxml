@@ -3,9 +3,9 @@
   <view class="header-info">
     <!--背景图片  -->
     <image class="bg-wrapper" src='../../images/member_bg.png'></image>
-    <!--如果只是展示头像、昵称，可以使用<open-data/>组件  -->      
+    <!--如果只是展示头像、昵称，可以使用<open-data/>组件  -->
     <open-data class="avatar" type="userAvatarUrl"></open-data>
-    <open-data class="nickname" type="userNickName"></open-data> 
+    <open-data class="nickname" type="userNickName"></open-data>
     <!--格言  -->
     <view class="motto">惠灵顿-在线校服预售~</view>
   </view>
@@ -18,6 +18,12 @@
     </view>
     <image bindtap="goMain" class="icon-arrow" src="../../images/right_arrow.png"></image>
   </view>
-  
-  
+  <view class="my-order">
+    <view class="left">
+      <image class="icon-order" src="../../images/customer_service.png"></image>
+      <text>客服热线</text>
+    </view>
+    <image bindtap="phoneCall" data-reply-phone="18217700275"  class="icon-arrow" src="../../images/right_arrow.png"></image>
+  </view>
+ 
 </view>

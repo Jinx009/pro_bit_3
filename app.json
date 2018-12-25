@@ -4,13 +4,15 @@
     "pages/index/goodsDetail/goodsDetail",
     "pages/category/category",
     "pages/cart/cart",
+    "pages/confirm/confirm",
+    "pages/success/success",
     "pages/member/member"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#FA5523",
     "navigationBarTitleText": "教育商城",
-    "navigationBarTextStyle": "white",
+    "navigationBarTextStyle": "black",
     "navigationStyle": "custom",
     "enablePullDownRefresh": true
   },

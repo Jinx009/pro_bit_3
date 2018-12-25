@@ -119,6 +119,6 @@
       </view>
     </view>
   </view>
-  <button class="btn-add" style='margin-botom:180rpx;margin-top:60rpx;'>提交订单</button>
+  <button class="btn-add" bindtap='goConfirm' style='margin-botom:180rpx;margin-top:60rpx;'>提交订单</button>
   <view style='height:30px;' ></view>
 </view>

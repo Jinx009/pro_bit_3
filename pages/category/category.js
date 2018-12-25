@@ -46,5 +46,10 @@ Page({
       num: num,
       minusStatus: minusStatus
     })
+  },
+  goConfirm:function(){
+    wx.navigateTo({
+      url: '/pages/confirm/confirm',
+    })
   }
 })

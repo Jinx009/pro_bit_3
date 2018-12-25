@@ -1,0 +1,53 @@
+<!--index.wxml-->
+<view class="navigation">
+  <text class="nav-title">支付结果</text>
+</view>
+<view class="container">
+   <image class="bargain-img"  style='width:100rpx;height:100rpx;margin-left:325rpx;margin-top:80rpx;' src="../../images/check_circle.png" ></image>
+   <text class="s_c" >我们会在7日内快递到您的收货地址</text>
+    <view class="guess-you-like-list">
+    <view class="guess-goods-item">
+      <text class="guess-title" style='padding-top:20rpx;'>订单信息</text>
+    </view>
+  </view>
+  <view class="bargain-wrapper"  >
+    <view class="bargain-item" >
+      <image class="bargain-img" src="../../images/c_1.png"></image>
+      <view class="bargain-info">
+        <view class="info-header">
+          <text class="title" space="nbsp">男生长袖羊毛衬衫   X1</text>
+          <text class="desc">尺寸：130</text>
+        </view>
+      </view>
+      <view class="bargain-info-right">
+        <view class="info-header">
+          <text class="title" space="nbsp">￥320.00</text>
+        </view>
+      </view>
+    </view>
+    <view class="bargain-item" >
+      <image class="bargain-img" src="../../images/c_2.png"></image>
+      <view class="bargain-info">
+        <view class="info-header">
+          <text class="title" space="nbsp">长裤   X1</text>
+          <text class="desc">尺寸：130</text>
+        </view>
+      </view>
+      <view class="bargain-info-right">
+        <view class="info-header">
+          <text class="title" space="nbsp">￥320.00</text>
+        </view>
+      </view>
+    </view>
+    <view class="guess-you-like-list">
+      <view class="guess-goods-item" >
+        <text class="guess-title" style="margin-left:28rpx;text-align:left;color:black;">需支付</text>
+      </view>
+      <view class="guess-goods-item" >
+        <text class="guess-title" style="margin-right:28rpx;text-align:right;color:red;">￥640</text>
+      </view>
+    </view>  
+  </view>
+    <button class="btn-add" bindtap='goBack' style='margin-botom:180rpx;margin-top:60rpx;'>我的订单</button>
+  <view style='height:30px;' ></view>
+</view>

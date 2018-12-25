@@ -13,7 +13,14 @@ page {
   border-bottom: 2rpx solid #f8f8f8;
   height: 80rpx;
   padding-top: 60rpx;
-  background: rgb(248, 248, 248);
+  background:white;
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+}
+.container{
+  width: 100%;
+  margin-top: 144rpx;
 }
 
 .bargain-wrapper, .special-topic-wrapper {
@@ -212,9 +219,11 @@ page {
   margin-left: 3.2px;
   margin-right: 3.2px;
 }
-.radio{
+
+.radio {
   margin-right: 10rpx;
 }
+
 .weui-cell__ft {
   text-align: right;
   color: #999;

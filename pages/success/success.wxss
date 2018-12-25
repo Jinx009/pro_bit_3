@@ -9,7 +9,7 @@ page {
   width: 100%;
   text-align: center;
   position: fixed;
-  top:0rpx;
+  top: 0rpx;
   left: 0rpx;
   color: #515151;
   font-size: 16px;
@@ -55,10 +55,12 @@ page {
   margin-left: 18rpx;
   border-bottom: 2rpx solid #f8f8f8;
 }
-.container{
+
+.container {
   width: 100%;
   margin-top: 148rpx;
 }
+
 .bargain-img {
   width: 95rpx;
   height: 98rpx;
@@ -195,4 +197,33 @@ page {
   width: 50%;
   flex-direction: column;
   color: #707070;
+}
+
+.btn-buy, .btn-add {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 88rpx;
+  width: 563rpx;
+  margin-left: 76rpx;
+}
+
+.btn-add {
+  background: linear-gradient(30deg, #fe9d76, #ff7878);
+  color: #fff;
+  border-radius: 49rpx;
+  font-size: 30rpx;
+  letter-spacing: 4rpx;
+}
+
+.s_c {
+  margin-top: 30rpx;
+  display: flex;
+  width: 468rpx;
+  font-size: 30rpx;
+  text-align: center;
+  color: gray;
+  margin-bottom: 60rpx;
+  margin-left: 140rpx;
 }

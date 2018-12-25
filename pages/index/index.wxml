@@ -3,7 +3,7 @@
   <text class="nav-title">我的订单</text>
 </view>
 <view class="container">
-  <view class="bargain-wrapper"  >
+  <view class="bargain-wrapper" bindtap='goDetail' >
     <view class="guess-you-like-list">
       <view class="guess-goods-item" >
         <text class="guess-title" style="margin-left:28rpx;text-align:left;">订单信息</text>
@@ -42,7 +42,7 @@
     </view>
     <view class="guess-you-like-list">
       <view class="guess-goods-item" >
-        <text class="guess-title" style="margin-left:28rpx;text-align:left;color:red;">￥640.00</text>
+        <text class="guess-title" style="margin-left:28rpx;text-align:left;color:black;">￥640.00</text>
       </view>
       <view class="guess-goods-item" >
         <text class="guess-title" style="margin-right:28rpx;text-align:right;color:gray;">已发货</text>
