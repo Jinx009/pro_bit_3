@@ -14,6 +14,9 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const generateRandom = (minNum, maxNum) => parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10)
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  generateRandom: generateRandom
 }

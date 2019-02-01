@@ -1,17 +1,18 @@
 //app.js
 App({
+  globalData: {
+    userInfo: null,
+    code: '',
+    apiURL: 'https://www.abuqool.store',
+    resultCode: 'WAITING',
+    msg: '等待支付',
+    payjsOrderId: ''
+  },
   onLaunch: function () {
     // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
+    // var logs = wx.getStorageSync('logs') || []
+    // logs.unshift(Date.now())
+    // wx.setStorageSync('logs', logs)
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -32,8 +33,44 @@ App({
         }
       }
     })
+    if (!wx.getStorageSync('openId')){
+      this.getOpenId()
+    }
   },
-  globalData: {
-    userInfo: null
+  onShow:function(options){
+    console.log('scene='+options.scene)
+    if (options.scene === 1038) { // 来源于小程序跳转
+      // 还应判断来源小程序 appid、请求路径
+      let referrerInfo = options.referrerInfo
+      let extraData = referrerInfo.extraData
+      this.globalData.resultCode = extraData.resultCode
+      this.globalData.msg = extraData.msg
+      this.globalData.payjsOrderId = extraData.payjsOrderId
+    }
+  },
+  getOpenId:function(){
+    // 登录
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        this.globalData.code = res.code
+        console.log('code=' + this.globalData.code)
+        // 获取openid
+        wx.request({
+          url: this.globalData.apiURL + '/common/openId/' + this.globalData.code,
+          data: {},
+          method: 'GET',
+          success: (res) => {
+            if (res.data.status == 200) {
+              wx.setStorageSync('openId', res.data.data)
+            }
+            console.log(res)
+          },
+          fail: function (res) {
+            console.info('getOpenId Failed', res);
+          }
+        })
+      }
+    })
   }
 })

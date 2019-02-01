@@ -14,7 +14,7 @@
         <text class="guess-title" style="margin-left:28rpx;text-align:left;color:black;">联系人</text>
       </view>
       <view class="guess-goods-item" style='width:70%;'>
-        <input placeholder='输入联系人' style='height:100%;width:100%;'></input>
+        <input placeholder='输入联系人' bindinput="bindReceiver" value='{{receiver}}' style='height:100%;width:100%;'></input>
       </view>
     </view>
     <view class="guess-you-like-list">
@@ -22,12 +22,12 @@
         <text class="guess-title" style="margin-left:28rpx;text-align:left;color:black;">联系电话</text>
       </view>
       <view class="guess-goods-item" style='width:70%;'>
-        <input placeholder='输入联系电话' style='height:100%;width:100%;'></input>
+        <input placeholder='输入联系电话' bindinput="bindMobile" value='{{mobile}}' style='height:100%;width:100%;'></input>
       </view>
     </view>
        <view class="guess-you-like-list" style='height:198rpx;line-height:50rpx;' >
       <view class="guess-goods-item" style='width:100%;'>
-        <textarea placeholder="请输入收货地址" style='height:198rpx;;padding:20rpx;'  />
+        <textarea placeholder="请输入收货地址" bindinput="bindAddress" value='{{address}}' style='height:198rpx;;padding:20rpx;'  />
       </view>
     </view>
   </view>
@@ -36,22 +36,22 @@
       <text class="guess-title" style='padding-top:20rpx;'>订单信息</text>
     </view>
   </view>
-  <view class="bargain-wrapper"  >
-    <view class="bargain-item" >
-      <image class="bargain-img" src="../../images/c_1.png"></image>
+  <view class="bargain-wrapper">
+    <view class="bargain-item" wx:for="{{orderDetails}}" wx:key="*this">
+      <image class="bargain-img" src="{{item.picUrl}}"></image>
       <view class="bargain-info">
         <view class="info-header">
-          <text class="title" space="nbsp">男生长袖羊毛衬衫   X1</text>
-          <text class="desc">尺寸：130</text>
+          <text class="title" space="nbsp">{{item.name}}   X{{item.quantity}}</text>
+          <text class="desc">尺寸：{{item.size}}</text>
         </view>
       </view>
       <view class="bargain-info-right">
         <view class="info-header">
-          <text class="title" space="nbsp">￥320.00</text>
+          <text class="title" space="nbsp">￥{{item.price}}</text>
         </view>
       </view>
     </view>
-    <view class="bargain-item" >
+    <!-- <view class="bargain-item" >
       <image class="bargain-img" src="../../images/c_2.png"></image>
       <view class="bargain-info">
         <view class="info-header">
@@ -64,16 +64,21 @@
           <text class="title" space="nbsp">￥320.00</text>
         </view>
       </view>
-    </view>
+    </view> -->
     <view class="guess-you-like-list">
       <view class="guess-goods-item" >
         <text class="guess-title" style="margin-left:28rpx;text-align:left;color:black;">需支付</text>
       </view>
       <view class="guess-goods-item" >
-        <text class="guess-title" style="margin-right:28rpx;text-align:right;color:red;">￥640</text>
+        <text class="guess-title" style="margin-right:28rpx;text-align:right;color:red;">￥{{payParams.total_fee}}</text>
       </view>
     </view>  
   </view>
-  <button class="btn-add" bindtap='goSuccess' style='margin-botom:180rpx;margin-top:60rpx;'>去支付</button>
+  <!-- <navigator target="miniProgram"
+    app-id="wx959c8c1fb2d877b5"
+    path="/pages/confirm/confirm"
+    extra-data="extraData"
+    version="trial" bindsuccess="goSuccess" bindfail="goFail" bindcomplete="goComplete" class="btn-add"  style='margin-botom:180rpx;margin-top:60rpx;'>去支付</navigator> -->
+  <button class="btn-add" bindtap='gotoPay' style='margin-botom:180rpx;margin-top:60rpx;'>去支付</button>
   <view style='height:30px;' ></view>
 </view>

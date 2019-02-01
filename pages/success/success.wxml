@@ -11,21 +11,21 @@
     </view>
   </view>
   <view class="bargain-wrapper"  >
-    <view class="bargain-item" >
-      <image class="bargain-img" src="../../images/c_1.png"></image>
+    <view class="bargain-item" wx:for="{{orderDetails}}" wx:key="*this">
+      <image class="bargain-img" src="{{item.picUrl}}"></image>
       <view class="bargain-info">
         <view class="info-header">
-          <text class="title" space="nbsp">男生长袖羊毛衬衫   X1</text>
-          <text class="desc">尺寸：130</text>
+          <text class="title" space="nbsp">{{item.name}}   X{{item.quantity}}</text>
+          <text class="desc">尺寸：{{item.size}}</text>
         </view>
       </view>
       <view class="bargain-info-right">
         <view class="info-header">
-          <text class="title" space="nbsp">￥320.00</text>
+          <text class="title" space="nbsp">￥{{item.price}}</text>
         </view>
       </view>
     </view>
-    <view class="bargain-item" >
+    <!-- <view class="bargain-item" >
       <image class="bargain-img" src="../../images/c_2.png"></image>
       <view class="bargain-info">
         <view class="info-header">
@@ -38,13 +38,13 @@
           <text class="title" space="nbsp">￥320.00</text>
         </view>
       </view>
-    </view>
+    </view> -->
     <view class="guess-you-like-list">
       <view class="guess-goods-item" >
         <text class="guess-title" style="margin-left:28rpx;text-align:left;color:black;">需支付</text>
       </view>
       <view class="guess-goods-item" >
-        <text class="guess-title" style="margin-right:28rpx;text-align:right;color:red;">￥640</text>
+        <text class="guess-title" style="margin-right:28rpx;text-align:right;color:red;">￥{{total}}</text>
       </view>
     </view>  
   </view>

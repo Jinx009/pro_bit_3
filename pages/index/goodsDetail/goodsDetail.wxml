@@ -3,30 +3,30 @@
   <text class="nav-title">订单详情</text>
 </view>
 <view class="container">
-  <view class="bargain-wrapper"  >
+  <view class="bargain-wrapper">
     <view class="guess-you-like-list">
       <view class="guess-goods-item" >
         <text class="guess-title" style="margin-left:28rpx;text-align:left;">订单信息</text>
       </view>
       <view class="guess-goods-item" >
-        <text class="guess-title" style="margin-right:28rpx;text-align:right;">编号:89757</text>
+        <text class="guess-title" style="margin-right:28rpx;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">编号:{{baseInfo.orderId}}</text>
       </view>
     </view>
-    <view class="bargain-item" >
-      <image class="bargain-img" src="../../../images/c_1.png"></image>
+    <view class="bargain-item" wx:for="{{orderDetail}}" wx:key="*this">
+      <image class="bargain-img" src="{{item.picUrl}}"></image>
       <view class="bargain-info">
         <view class="info-header">
-          <text class="title" space="nbsp">男生长袖羊毛衬衫   X1</text>
-          <text class="desc">尺寸：130</text>
+          <text class="title" space="nbsp">{{item.name}}   X{{item.quantity}}</text>
+          <text class="desc">尺寸：{{item.size}}</text>
         </view>
       </view>
       <view class="bargain-info-right">
         <view class="info-header">
-          <text class="title" space="nbsp">￥320.00</text>
+          <text class="title" space="nbsp">￥{{item.price}}</text>
         </view>
       </view>
     </view>
-    <view class="bargain-item" >
+    <!-- <view class="bargain-item" >
       <image class="bargain-img" src="../../../images/c_2.png"></image>
       <view class="bargain-info">
         <view class="info-header">
@@ -39,13 +39,13 @@
           <text class="title" space="nbsp">￥320.00</text>
         </view>
       </view>
-    </view>
+    </view> -->
     <view class="guess-you-like-list">
       <view class="guess-goods-item" >
         <text class="guess-title" style="margin-left:28rpx;text-align:left;color:black;">联系人</text>
       </view>
       <view class="guess-goods-item" >
-        <text class="guess-title" style="margin-right:28rpx;text-align:right;color:gray;">Jinx</text>
+        <text class="guess-title" style="margin-right:28rpx;text-align:right;color:gray;">{{baseInfo.receiver}}</text>
       </view>
     </view>
     <view class="guess-you-like-list">
@@ -53,7 +53,7 @@
         <text class="guess-title" style="margin-left:28rpx;text-align:left;color:black;">联系电话</text>
       </view>
       <view class="guess-goods-item" >
-        <text class="guess-title" style="margin-right:28rpx;text-align:right;color:gray;">18217700275</text>
+        <text class="guess-title" style="margin-right:28rpx;text-align:right;color:gray;">{{baseInfo.mobile}}</text>
       </view>
     </view>
       <view class="guess-you-like-list">
@@ -63,7 +63,7 @@
     </view>
         <view class="guess-you-like-list" style="height:188rpx;">
       <view class="guess-goods-item" style='width:100%;' >
-        <text class="guess-title" style="margin-left:28rpx;text-align:left;color:gray;">上海市宝山区高境镇三门路485弄65号楼401室上海市宝山区高境镇三门路485弄65号楼401室</text>
+        <text class="guess-title" style="margin-left:28rpx;text-align:left;color:gray;">{{baseInfo.address}}</text>
       </view>
     </view>
   </view>

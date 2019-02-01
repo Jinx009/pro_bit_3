@@ -11,7 +11,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.1.1",
+	"libVersion": "2.4.0",
 	"appid": "wx6494fd983d3b87b7",
 	"projectname": "wx_shopping_mall",
 	"isGameTourist": false,

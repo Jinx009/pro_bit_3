@@ -3,30 +3,30 @@
   <text class="nav-title">我的订单</text>
 </view>
 <view class="container">
-  <view class="bargain-wrapper" bindtap='goDetail' >
+  <view class="bargain-wrapper" data-status='{{item.status}}' bindtap='goDetail' wx:for="{{orderList}}" wx:key="*this"  data-index="{{index}}">
     <view class="guess-you-like-list">
       <view class="guess-goods-item" >
         <text class="guess-title" style="margin-left:28rpx;text-align:left;">订单信息</text>
       </view>
-      <view class="guess-goods-item" >
-        <text class="guess-title" style="margin-right:28rpx;text-align:right;">编号:89757</text>
+      <view class="guess-goods-item">
+        <text class="guess-title" style="margin-right:28rpx;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">编号:{{item.orderId}}</text>
       </view>
     </view>
-    <view class="bargain-item" >
-      <image class="bargain-img" src="../../images/c_1.png"></image>
+    <view class="bargain-item" wx:for="{{orderList.detailVos}}" wx:key="*this">
+      <image class="bargain-img" src="{{item.picUrl}}"></image>
       <view class="bargain-info">
         <view class="info-header">
-          <text class="title" space="nbsp">男生长袖羊毛衬衫   X1</text>
-          <text class="desc">尺寸：130</text>
+          <text class="title" space="nbsp">{{item.name}}   X{{item.quantity}}</text>
+          <text class="desc">尺寸：{{item.size}}</text>
         </view>
       </view>
       <view class="bargain-info-right">
         <view class="info-header">
-          <text class="title" space="nbsp">￥320.00</text>
+          <text class="title" space="nbsp">￥{{item.price}}</text>
         </view>
       </view>
     </view>
-    <view class="bargain-item" >
+    <!-- <view class="bargain-item" >
       <image class="bargain-img" src="../../images/c_2.png"></image>
       <view class="bargain-info">
         <view class="info-header">
@@ -39,10 +39,10 @@
           <text class="title" space="nbsp">￥320.00</text>
         </view>
       </view>
-    </view>
+    </view> -->
     <view class="guess-you-like-list">
       <view class="guess-goods-item" >
-        <text class="guess-title" style="margin-left:28rpx;text-align:left;color:black;">￥640.00</text>
+        <text class="guess-title" style="margin-left:28rpx;text-align:left;color:black;">￥{{item.totalFee}}</text>
       </view>
       <view class="guess-goods-item" >
         <text class="guess-title" style="margin-right:28rpx;text-align:right;color:gray;">已发货</text>
@@ -50,7 +50,11 @@
     </view>
     
   </view>
-  <view class="bargain-wrapper">
+  <!--到底提示-->
+    <view class="bottom-tip">
+      <text>木有更多内容了，再到处逛逛吧~</text>
+    </view>
+  <!-- <view class="bargain-wrapper">
     <view class="guess-you-like-list">
       <view class="guess-goods-item" >
         <text class="guess-title" style="margin-left:28rpx;text-align:left;">订单信息</text>
@@ -96,11 +100,9 @@
       </view>
     </view>
     
-  </view>
+  </view> -->
   
+  <button class="btn-add" bindtap='goBuy' style='margin-botom:180rpx;margin-top:60rpx;' wx:if="{{orderList.length<1}}">去购买</button>
   
-  <!--到底提示-->
-  <view class="bottom-tip">
-    <text>木有更多内容了，再到处逛逛吧~</text>
-  </view>
 </view>
+<!-- <impower bindmyevent="reloadHander" goImpower="{{goImpower}}"></impower> -->

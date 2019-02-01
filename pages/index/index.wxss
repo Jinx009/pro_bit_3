@@ -1,7 +1,7 @@
 /**index.wxss**/
 
 page {
-  height: 100%;
+  height: auto;
   background: rgb(248, 248, 248);
 }
 
@@ -195,4 +195,15 @@ page {
   width: 50%;
   flex-direction: column;
   color: #707070;
+}
+
+.btn-add {
+  height: 88rpx;
+  width: 563rpx;
+  margin: 0 auto;
+  background: linear-gradient(30deg, #fe9d76, #ff7878);
+  color: #fff;
+  border-radius: 49rpx;
+  font-size: 30rpx;
+  letter-spacing: 4rpx;
 }

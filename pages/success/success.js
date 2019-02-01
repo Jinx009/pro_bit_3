@@ -1,18 +1,24 @@
 // pages/confirm/confirm.js
+var App = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    orderId: '',
+    apiUrl: App.globalData.apiURL,
+    orderDetails: [],
+    total: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if(options.orderId){
+      this.setData({orderId:options.orderId})
+    }
   },
 
   /**
@@ -26,7 +32,32 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getOrderDetail()
+  },
 
+  // 获取订单信息
+  getOrderDetail: function () {
+    wx.request({
+      url: this.data.apiUrl + '/order/detail/' + wx.getStorageSync('openId') + '/' + this.data.payParams.out_trade_no,
+      data: {
+      },
+      method: 'GET',
+      success: (res) => {
+        if (res.data.status == 200) {
+          this.setData({ orderDetails: res.data.data.detailVos })
+          let orderDetails = this.data.orderDetails
+          let total = this.data.total
+          orderDetails.forEach((item, index) => {
+            total += item.price * item.quantity
+          })
+          total = total.toFixed(2)
+          this.setData({ total: total })
+        }
+      },
+      fail: function (res) {
+        console.info('getOrderDetail Failed', res)
+      }
+    })
   },
 
   /**

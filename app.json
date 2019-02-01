@@ -30,19 +30,10 @@
         "text": "购物",
         "iconPath": "images/cart.png",
         "selectedIconPath": "images/cart_select.png"
-      },
-      {
-        "pagePath": "pages/cart/cart",
-        "text": "信息录入",
-        "iconPath": "images/category.png",
-        "selectedIconPath": "images/category_select.png"
-      },
-      {
-        "pagePath": "pages/member/member",
-        "text": "个人中心",
-        "iconPath": "images/member.png",
-        "selectedIconPath": "images/member_select.png"
       }
     ]
-  }
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wx959c8c1fb2d877b5"
+  ]
 }
