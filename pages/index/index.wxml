@@ -12,7 +12,7 @@
         <text class="guess-title" style="margin-right:28rpx;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">编号:{{item.orderId}}</text>
       </view>
     </view>
-    <view class="bargain-item" wx:for="{{orderList.detailVos}}" wx:key="*this">
+    <view class="bargain-item" wx:for="{{item.detailVos}}" wx:key="*this">
       <image class="bargain-img" src="{{item.picUrl}}"></image>
       <view class="bargain-info">
         <view class="info-header">

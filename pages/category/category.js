@@ -68,17 +68,20 @@ Page({
   goConfirm:function(){
     let goodsList = this.data.goodsList
     let orderDetails = []
+    let total = 0
     goodsList.forEach((item,index) => {
       let detail = {}
       detail.goodsId = item.id
       detail.quantity = item.num
       detail.size = item.checked
       orderDetails.push(detail)
+      total+=item.num*item.price
     })
     wx.request({
       url: this.data.apiUrl + '/order/save/' + wx.getStorageSync('openId'),
       data: {
         orderDetails: orderDetails,
+        totalFee:total.toFixed(2)
       },
       method: 'POST',
       success: (res) => {
