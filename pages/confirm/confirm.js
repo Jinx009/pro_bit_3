@@ -18,7 +18,7 @@ Page({
       attach: '',//用户自定义数据，在notify的时候会原样返回
       notify_url: '',//异步通知地址
       nonce: '',//随机字符串
-      // sign: '',//数据签名 详见签名算法
+      sign: null,//数据签名 详见签名算法
       resultCode: '',
       msg: '',
       payjsOrderId: ''
@@ -154,23 +154,14 @@ Page({
           // payjs
           wx.navigateToMiniProgram({
             appId: 'wx959c8c1fb2d877b5',
-            path: '/pages/confirm/confirm',
+            // path: '/pages/confirm/confirm',
+            path: 'pages/pay',
             extraData: extraData,
-            envVersion: 'trial', //体验版
+            // envVersion: 'trial', //体验版
             success: r => {
+              console.log('支付成功=>')
               console.log(r)
-              console.log('等待返回')
-            },
-            fail: function (e) {
-              console.error(e)
-              wx.showModal({
-                title: '支付失败',
-                content: e.errMsg
-              })
-            },
-            complete: (e) => {
-              console.log("complete=>")
-              console.log(e)
+              console.log('支付success。。')
               // 确认订单--将payorderId传给后端
               wx.request({
                 url: this.data.apiUrl + '/order/paid/' + wx.getStorageSync('openId'),
@@ -190,6 +181,18 @@ Page({
                   console.info('paid Failed', res)
                 }
               })
+            },
+            fail: function (e) {
+              console.log('支付失败=>')
+              console.error(e)
+              wx.showModal({
+                title: '支付失败',
+                content: e.errMsg
+              })
+            },
+            complete: (e) => {
+              console.log("complete=>")
+              console.log(e)
             }
           })
         }
