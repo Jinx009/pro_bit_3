@@ -1,5 +1,6 @@
 var App = getApp();
 const utils = require('../../utils/util.js')
+var CryptoJS = require('../../utils/md5.js')
 Page({
   /**
    * 页面的初始数据
@@ -11,17 +12,17 @@ Page({
     orderDetails: [],
     // orderId: '',
     payParams:{
-      mchid: '1525243181',//商户号
-      total_fee: 0,//金额
-      out_trade_no: '',//用户端自主生成的订单号
-      body: '',//订单标题
       attach: '',//用户自定义数据，在notify的时候会原样返回
-      notify_url: '',//异步通知地址
-      nonce: '',//随机字符串
-      sign: null,//数据签名 详见签名算法
-      resultCode: '',
+      body: '',//订单标题
+      mchid: '1525243181',//商户号
       msg: '',
-      payjsOrderId: ''
+      nonce: '',//随机字符串
+      notify_url: '',//异步通知地址
+      out_trade_no: '',//用户端自主生成的订单号
+      payjsOrderId: '',
+      resultCode: '',
+      sign: null,//数据签名 详见签名算法
+      total_fee: 0//金额
     },
     apiUrl: App.globalData.apiURL,
     jump: false,
@@ -80,36 +81,6 @@ Page({
       }
     })
   },
-  goSuccess:function(e){
-    console.log('success=>')
-    console.log(e)
-  },
-  goFail:function(e){
-    console.log('fail=>')
-    console.log(e)
-  },
-  goComplete: function (e) {
-    console.log('complete=>')
-    console.log(e)
-    wx.request({
-      url: this.data.apiUrl + '/order/paid/' + wx.getStorageSync('openId'),
-      data: {
-        orderId:this.data.payParams.out_trade_no,
-        payOrderId: this.data.payjsOrderId
-      },
-      method: 'POST',
-      success: (res) => {
-        if (res.data.status == 200) {
-          wx.navigateTo({
-            url: '/pages/success/success?orderId=' + this.data.payParams.out_trade_no,
-          })
-        }
-      },
-      fail: function (res) {
-        console.info('getOrderDetail Failed', res)
-      }
-    })
-  },
   // 去支付
   gotoPay:function(){
     let receiver = this.data.receiver
@@ -150,7 +121,41 @@ Page({
       method: 'POST',
       success: (res) => {
         if (res.data.status == 200) {
+          let sign = ''
+          if(this.data.payParams.attach){
+            sign = `attach=${this.data.payParams.attach}&`
+          }
+          if (this.data.payParams.body){
+            sign += `body=${this.data.payParams.body}&`
+          }
+          if (this.data.payParams.mchid) {
+            sign += `mchid=${this.data.payParams.mchid}&`
+          }
+          if (this.data.payParams.msg) {
+            sign += `msg=${this.data.payParams.msg}&`
+          }
+          if (this.data.payParams.nonce) {
+            sign = `nonce=${this.data.payParams.nonce}&`
+          }
+          if (this.data.payParams.notify_url) {
+            sign += `notify_url=${this.data.payParams.notify_url}&`
+          }
+          if (this.data.payParams.out_trade_no) {
+            sign += `out_trade_no=${this.data.payParams.out_trade_no}&`
+          }
+          if (this.data.payParams.payjsOrderId) {
+            sign += `payjsOrderId=${this.data.payParams.payjsOrderId}&`
+          }
+          if (this.data.payParams.resultCode) {
+            sign += `resultCode=${this.data.payParams.resultCode}&`
+          }
+          if (this.data.payParams.total_fee) {
+            sign += `total_fee=${this.data.payParams.total_fee}&`
+          }
+          sign += '&key=q2lfaue0Jno6lNsv'
           let extraData = this.data.payParams
+          extraData.sign = this.encryption(extraData)
+          this.setData({ payParams: extraData})
           // payjs
           wx.navigateToMiniProgram({
             appId: 'wx959c8c1fb2d877b5',
@@ -202,7 +207,17 @@ Page({
       }
     })
   },
-  
+  encryption: function (data) {
+    // let strs = [];
+    // for (let i in data) {
+    //   strs.push(i + '=' + data[i]);
+    // }
+    // strs.sort();  // 数组排序
+    // strs = strs.join('&'); // 数组变字符串
+    var md5Str = CryptoJS.MD5(data).toString(CryptoJS.enc.Hex).toUpperCase();
+    console.log("md5后得到的字符串：%s", md5Str)
+    return md5Str;
+  },
   // 获取联系人
   bindReceiver:function(e){
     this.setData({

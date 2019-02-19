@@ -106,7 +106,7 @@ Page({
   },
   getGoods: function () {
     wx.request({
-      url: this.data.apiUrl + '/common/goods',
+      url: this.data.apiUrl + '/common/goods/' + wx.getStorageSync('openId'),
       data: {},
       method: 'GET',
       success: (res)=>{

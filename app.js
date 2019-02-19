@@ -6,7 +6,8 @@ App({
     apiURL: 'https://www.abuqool.store',
     resultCode: 'WAITING',
     msg: '等待支付',
-    payjsOrderId: ''
+    payjsOrderId: '',
+    schoolCode: ''
   },
   onLaunch: function () {
     // 展示本地存储能力
@@ -39,6 +40,9 @@ App({
   },
   onShow:function(options){
     console.log('scene='+options.scene)
+    if (options.query.school_code){
+      this.globalData.schoolCode = options.query.school_code
+    }
     if (options.scene === 1038) { // 来源于小程序跳转
       // 还应判断来源小程序 appid、请求路径
       let referrerInfo = options.referrerInfo
