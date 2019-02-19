@@ -51,58 +51,9 @@
     
   </view>
   <!--到底提示-->
-    <view class="bottom-tip">
+    <view class="bottom-tip" wx:if="{{isScan}}">
       <text>木有更多内容了，再到处逛逛吧~</text>
     </view>
-  <!-- <view class="bargain-wrapper">
-    <view class="guess-you-like-list">
-      <view class="guess-goods-item" >
-        <text class="guess-title" style="margin-left:28rpx;text-align:left;">订单信息</text>
-      </view>
-      <view class="guess-goods-item" >
-        <text class="guess-title" style="margin-right:28rpx;text-align:right;">编号:89757</text>
-      </view>
-    </view>
-    <view class="bargain-item" >
-      <image class="bargain-img" src="../../images/c_1.png"></image>
-      <view class="bargain-info">
-        <view class="info-header">
-          <text class="title" space="nbsp">男生长袖羊毛衬衫   X1</text>
-          <text class="desc">尺寸：130</text>
-        </view>
-      </view>
-      <view class="bargain-info-right">
-        <view class="info-header">
-          <text class="title" space="nbsp">￥320.00</text>
-        </view>
-      </view>
-    </view>
-    <view class="bargain-item" >
-      <image class="bargain-img" src="../../images/c_2.png"></image>
-      <view class="bargain-info">
-        <view class="info-header">
-          <text class="title" space="nbsp">长裤   X1</text>
-          <text class="desc">尺寸：130</text>
-        </view>
-      </view>
-      <view class="bargain-info-right">
-        <view class="info-header">
-          <text class="title" space="nbsp">￥320.00</text>
-        </view>
-      </view>
-    </view>
-    <view class="guess-you-like-list">
-      <view class="guess-goods-item" >
-        <text class="guess-title" style="margin-left:28rpx;text-align:left;color:red;">￥640.00</text>
-      </view>
-      <view class="guess-goods-item" >
-        <text class="guess-title" style="margin-right:28rpx;text-align:right;color:gray;">已发货</text>
-      </view>
-    </view>
-    
-  </view> -->
-  
-  <button class="btn-add" bindtap='goBuy' style='margin-botom:180rpx;margin-top:60rpx;' wx:if="{{orderList.length<1}}">去购买</button>
+  <button class="btn-add" bindtap='goBuy' style='margin-botom:180rpx;margin-top:60rpx;' wx:if="{{orderList.length<1&&isScan}}">去购买</button>
   
 </view>
-<!-- <impower bindmyevent="reloadHander" goImpower="{{goImpower}}"></impower> -->

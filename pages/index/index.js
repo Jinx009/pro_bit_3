@@ -4,7 +4,8 @@ var CryptoJS = require('../../utils/md5.js')
 Page({
   data: {
     apiUrl: App.globalData.apiURL,
-    orderList: []
+    orderList: [],
+    isScan:false
   },
   onLoad:function(){
   },
@@ -13,7 +14,6 @@ Page({
       this.getOrderList()
     }
   },
-  
   goDetail: function (e) {
     let index = e.currentTarget.dataset.index
     let status = e.currentTarget.dataset.status
@@ -40,9 +40,24 @@ Page({
       data: {},
       method: 'GET',
       success: (res) => {
-        if (res.data.data) {
+        if (res.data.status==200) {
           let orderList = res.data.data
-          this.setData({ orderList: res.data.data })
+          this.setData({ orderList: res.data.data, isScan:true })
+          wx.showTabBar({})
+        } else if(res.data.status==500){
+          this.setData({ isScan: false })
+          wx.hideTabBar({})
+          wx.showModal({
+            title: '提示',
+            content: res.data.msg,
+            success(res) {
+              if (res.confirm) {
+                // console.log('用户点击确定')
+              } else if (res.cancel) {
+                // console.log('用户点击取消')
+              }
+            }
+          })
         }
       },
       fail: function (res) {
