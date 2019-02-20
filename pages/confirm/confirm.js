@@ -13,7 +13,7 @@ Page({
     // orderId: '',
     payParams:{
       attach: '',//用户自定义数据，在notify的时候会原样返回
-      body: '',//订单标题
+      body: '爱布谷商城',//订单标题
       mchid: '1525243181',//商户号
       msg: '',
       nonce: '',//随机字符串
@@ -50,7 +50,9 @@ Page({
     payParams.resultCode = App.globalData.resultCode,
     payParams.msg = App.globalData.msg,
     payParams.payjsOrderId = App.globalData.payjsOrderId,
-    payParams.nonce = utils.generateRandom(100000, 999999)
+    payParams.nonce = utils.generateRandom(100000, 999999),
+    payParams.mchid = '1525243181',
+    payParams.body = '爱布谷商城'
     this.setData({
       payParams: payParams
     })
@@ -128,14 +130,9 @@ Page({
           if (this.data.payParams.body){
             sign += `body=${this.data.payParams.body}&`
           }
-          if (this.data.payParams.mchid) {
-            sign += `mchid=${this.data.payParams.mchid}&`
-          }
-          if (this.data.payParams.msg) {
-            sign += `msg=${this.data.payParams.msg}&`
-          }
+          sign += 'mchid=1525243181&';
           if (this.data.payParams.nonce) {
-            sign = `nonce=${this.data.payParams.nonce}&`
+            sign += `nonce=${this.data.payParams.nonce}&`
           }
           if (this.data.payParams.notify_url) {
             sign += `notify_url=${this.data.payParams.notify_url}&`
@@ -143,18 +140,12 @@ Page({
           if (this.data.payParams.out_trade_no) {
             sign += `out_trade_no=${this.data.payParams.out_trade_no}&`
           }
-          if (this.data.payParams.payjsOrderId) {
-            sign += `payjsOrderId=${this.data.payParams.payjsOrderId}&`
-          }
-          if (this.data.payParams.resultCode) {
-            sign += `resultCode=${this.data.payParams.resultCode}&`
-          }
           if (this.data.payParams.total_fee) {
             sign += `total_fee=${this.data.payParams.total_fee}&`
           }
           sign += '&key=q2lfaue0Jno6lNsv'
           let extraData = this.data.payParams
-          extraData.sign = this.encryption(extraData)
+          extraData.sign = this.encryption(sign)
           this.setData({ payParams: extraData})
           // payjs
           wx.navigateToMiniProgram({
@@ -214,7 +205,8 @@ Page({
     // }
     // strs.sort();  // 数组排序
     // strs = strs.join('&'); // 数组变字符串
-    var md5Str = CryptoJS.MD5(data).toString(CryptoJS.enc.Hex).toUpperCase();
+    console.log(data)
+    var md5Str = CryptoJS.MD5(data).toString().toUpperCase();
     console.log("md5后得到的字符串：%s", md5Str)
     return md5Str;
   },
