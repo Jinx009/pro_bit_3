@@ -17,7 +17,7 @@ Page({
       mchid: '1525243181',//商户号
       msg: '',
       nonce: '',//随机字符串
-      notify_url: '',//异步通知地址
+      notify_url: 'https://payjs.qingwuguo.com/payjs',//异步通知地址
       out_trade_no: '',//用户端自主生成的订单号
       payjsOrderId: '',
       resultCode: '',
@@ -141,7 +141,7 @@ Page({
             sign += `out_trade_no=${this.data.payParams.out_trade_no}&`
           }
           if (this.data.payParams.total_fee) {
-            sign += `total_fee=${this.data.payParams.total_fee}&`
+            sign += `total_fee=${this.data.payParams.total_fee*100}&`
           }
           sign += '&key=q2lfaue0Jno6lNsv'
           let extraData = this.data.payParams
@@ -150,10 +150,9 @@ Page({
           // payjs
           wx.navigateToMiniProgram({
             appId: 'wx959c8c1fb2d877b5',
-            // path: '/pages/confirm/confirm',
             path: 'pages/pay',
             extraData: extraData,
-            // envVersion: 'trial', //体验版
+            envVersion: 'trial', //体验版
             success: r => {
               console.log('支付成功=>')
               console.log(r)
@@ -163,7 +162,7 @@ Page({
                 url: this.data.apiUrl + '/order/paid/' + wx.getStorageSync('openId'),
                 data: {
                   orderId: this.data.payParams.out_trade_no,
-                  payOrderId: this.data.payjsOrderId
+                  payOrderId: this.data.payParams.payjsOrderId
                 },
                 method: 'POST',
                 success: (res) => {
