@@ -17,7 +17,7 @@ Page({
       mchid: '1525243181',//商户号
       msg: '',
       nonce: '',//随机字符串
-      notify_url: 'https://payjs.qingwuguo.com/payjs',//异步通知地址
+      notify_url: '',//异步通知地址
       out_trade_no: '',//用户端自主生成的订单号
       payjsOrderId: '',
       resultCode: '',
@@ -123,39 +123,25 @@ Page({
       method: 'POST',
       success: (res) => {
         if (res.data.status == 200) {
-          let sign = ''
-          if(this.data.payParams.attach){
-            sign = `attach=${this.data.payParams.attach}&`
+          let payParams = this.data.payParams
+          let extraData = {
+            mchId: payParams.mchid,
+            totalFee: (payParams.total_fee-0)*100,
+            outTradeNo: 'TEST-WXA-1550826619363-9871',
+            body: payParams.body,
+            notifyUrl: null,
+            attach: null,
+            nonce: payParams.nonce,
+            sign: null // 签名
           }
-          if (this.data.payParams.body){
-            sign += `body=${this.data.payParams.body}&`
-          }
-          sign += 'mchid=1525243181&';
-          if (this.data.payParams.nonce) {
-            sign += `nonce=${this.data.payParams.nonce}&`
-          }
-          if (this.data.payParams.notify_url) {
-            sign += `notify_url=${this.data.payParams.notify_url}&`
-          }
-          if (this.data.payParams.out_trade_no) {
-            sign += `out_trade_no=${this.data.payParams.out_trade_no}&`
-          }
-          if (this.data.payParams.total_fee) {
-            sign += `total_fee=${this.data.payParams.total_fee*100}&`
-          }
-          sign += '&key=q2lfaue0Jno6lNsv'
-          let extraData = this.data.payParams
-          extraData.sign = this.encryption(sign)
-          this.setData({ payParams: extraData})
+          console.log('进入。。payjs参数=>')
+          console.log(extraData)
           // payjs
           wx.navigateToMiniProgram({
             appId: 'wx959c8c1fb2d877b5',
             path: 'pages/pay',
             extraData: extraData,
-            envVersion: 'trial', //体验版
             success: r => {
-              console.log('支付成功=>')
-              console.log(r)
               console.log('支付success。。')
               // 确认订单--将payorderId传给后端
               wx.request({
