@@ -10,7 +10,7 @@
       <text class="guess-title" style='padding-top:20rpx;'>订单信息</text>
     </view>
   </view>
-  <view class="bargain-wrapper"  >
+  <view class="bargain-wrapper">
     <view class="bargain-item" wx:for="{{orderDetails}}" wx:key="*this">
       <image class="bargain-img" src="{{item.picUrl}}"></image>
       <view class="bargain-info">

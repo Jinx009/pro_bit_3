@@ -38,7 +38,7 @@ Page({
   // 获取订单信息
   getOrderDetail: function () {
     wx.request({
-      url: this.data.apiUrl + '/order/detail/' + wx.getStorageSync('openId') + '/' + this.data.payParams.out_trade_no,
+      url: this.data.apiUrl + '/order/detail/' + wx.getStorageSync('openId') + '/' + this.data.orderId,
       data: {
       },
       method: 'GET',

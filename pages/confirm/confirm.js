@@ -57,6 +57,31 @@ Page({
       payParams: payParams
     })
     this.getOrderDetail()
+    if(payParams.msg=='支付成功'){
+      this.payCallBack()
+    }
+  },
+  payCallBack: function () {
+    console.log('out_trade_no=' + this.data.payParams.out_trade_no+'payCallBack=' + this.data.payParams.payjsOrderId)
+    // 确认订单--将payorderId传给后端
+    wx.request({
+      url: this.data.apiUrl + '/order/paid/' + wx.getStorageSync('openId'),
+      data: {
+        orderId: this.data.payParams.out_trade_no,
+        payOrderId: this.data.payParams.payjsOrderId
+      },
+      method: 'POST',
+      success: (res) => {
+        if (res.data.status == 200) {
+          wx.navigateTo({
+            url: '/pages/success/success?orderId=' + this.data.payParams.out_trade_no,
+          })
+        }
+      },
+      fail: function (res) {
+        console.info('paid Failed', res)
+      }
+    })
   },
   // 获取订单信息
   getOrderDetail: function () {
@@ -127,7 +152,7 @@ Page({
           let extraData = {
             mchId: payParams.mchid,
             totalFee: (payParams.total_fee-0)*100,
-            outTradeNo: 'TEST-WXA-1550826619363-9871',
+            outTradeNo: payParams.out_trade_no,
             body: payParams.body,
             notifyUrl: null,
             attach: null,
@@ -143,25 +168,7 @@ Page({
             extraData: extraData,
             success: r => {
               console.log('支付success。。')
-              // 确认订单--将payorderId传给后端
-              wx.request({
-                url: this.data.apiUrl + '/order/paid/' + wx.getStorageSync('openId'),
-                data: {
-                  orderId: this.data.payParams.out_trade_no,
-                  payOrderId: this.data.payParams.payjsOrderId
-                },
-                method: 'POST',
-                success: (res) => {
-                  if (res.data.status == 200) {
-                    wx.navigateTo({
-                      url: '/pages/success/success',
-                    })
-                  }
-                },
-                fail: function (res) {
-                  console.info('paid Failed', res)
-                }
-              })
+              
             },
             fail: function (e) {
               console.log('支付失败=>')

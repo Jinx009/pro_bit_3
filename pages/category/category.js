@@ -121,6 +121,18 @@ Page({
             item.num = 0
             item.minusStatus = 'disable'
           })
+          // for (var i = 0; i < goodsList.length; i++) {
+          //   for (var j = 1; j < goodsList.length; j++) {
+          //     if(goodsList[i].type==''){
+          //       continue
+          //     }
+          //     if (goodsList[i].type == goodsList[j].type) {
+          //       goodsList[j].type = ''
+          //     }
+          //   }
+          // }
+          // console.log('处理过后的goodsList=>')
+          // console.log(goodsList)
           this.setData({ goodsList:res.data.data})
         }
         console.log(res)
